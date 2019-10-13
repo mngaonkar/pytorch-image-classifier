@@ -12,7 +12,7 @@ Basic image classifier for identifying multiple classes
 ## Simple neural network
 | Layer  | In Features | Out Features |
 | ------------- | ------------- | ------------- |
-| Linear  | 64*64*3  | 84 |
+| Linear  | 64\*64\*3  | 84 |
 | Linear  | 84  | 50 |
 | Linear | 50 | 3 |
 
