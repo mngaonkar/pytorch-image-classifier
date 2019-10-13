@@ -1,6 +1,6 @@
 import torch
 import torchvision
-from torchvision import transforms
+from torchvision import transforms, models
 import torch.optim as optim
 from NeuralNetwork import NeuralNetwork
 from ConvNeuralNetwork import ConvNeuralNetwork
@@ -9,13 +9,13 @@ from PIL import ImageFile
 from PIL import Image
 import matplotlib.pyplot as plt
 from torch.autograd import Variable
+import sys
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-# model = NeuralNetwork()
-model = ConvNeuralNetwork(num_classes=3)
-
-# print(model)
+# model = NeuralNetwork(num_classes=3)
+# model = ConvNeuralNetwork(num_classes=3)
+model = models.resnet18(pretrained=True)
 
 # Configuration
 training_data_path = "./train/"
@@ -69,9 +69,9 @@ total = 0
 correct = 0
 
 for epoch in range(epochs):
+    training_index = 0
+
     for index, data in enumerate(training_data_loader):
-        # print("batch [0] input shape = ", batch[0].size())
-        # print("batch [1] output shape = ", batch[1].size())
         inputs, labels = data
         outputs = model(inputs)
 
@@ -89,8 +89,9 @@ for epoch in range(epochs):
         training_index += 1
         print("epoch = %d training accuracy = %f training loss = %f" % (epoch, correct/total, loss.data.item()))
 
+    print("Number of images processed = %d" % (training_index * len(inputs)))
 
-print("training index = ", training_index)
+# print("training index = ", training_index)
 # print("training loss = ", training_loss/training_index)
 # plt.plot(training_accuracy, label='Training Accuracy')
 # plt.plot(training_loss, label='Training Loss')
@@ -123,10 +124,13 @@ for index, data in enumerate(validation_data_loader):
     loss = loss_fn(outputs, labels)
     validation_loss += loss.data.item()
     validation_index += 1
-    print("validation loss = %f" % loss.data.item())
+    # print("validation loss = %f" % loss.data.item())
 
 print("validation loss = ", validation_loss/validation_index)
 print("validation accuracy = %f" % (correct/total))
+
+# Save weights
+torch.save(model, 'model.pth')
 
 # Prediction
 labels = train_data.classes
