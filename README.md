@@ -30,7 +30,7 @@ Basic image classifier for identifying multiple classes
 | ReLU  |   | 
 | Linear | In Features = 32 x 32 x 24, Out Features = 3 |
 
-## Training accuracy with simple neural network
+## Model accuracy with simple neural network
 
 | Result  | Value |
 | ------------- | ------------- |
@@ -38,10 +38,16 @@ Basic image classifier for identifying multiple classes
 | Validation accuracy  | 0.747073  |
 
 
-## Training accuracy with convolution neural network
+## Model accuracy with convolution neural network
 
 | Result  | Value |
 | ------------- | ------------- |
 | Training accuracy  | 0.854475  |
 | Validation accuracy  | 0.838407  |
 
+## Model accuracy with transfer learned resnet-18
+
+| Result  | Value |
+| ------------- | ------------- |
+| Training accuracy  | 0.954887  |
+| Validation accuracy  | 0.960187  |
