@@ -9,6 +9,12 @@ Basic image classifier for identifying multiple classes
 | Batch size  | 32  |
 | Learning rate | 0.001 |
 
+## Simple neural network
+| Layer  | In Features | Out Features |
+| ------------- | ------------- | ------------- |
+| Linear  | 64*64*3  | 84 |
+| Linear  | 84  | 50 |
+| Linear | 50 | 3 |
 
 ## Training accuracy with simple neural network
 
